@@ -50,7 +50,107 @@
   color: #1a7a3f;
 }
 
-/* ===== GRID ===== */
+.demo-credentials {
+  margin: 28px auto 0;
+  max-width: 700px;
+  background: #fffdf4;
+  border: 1px solid #f0d97a;
+  border-radius: 14px;
+  padding: 18px 24px 20px;
+  box-shadow: 0 2px 12px rgba(200, 160, 0, 0.08);
+}
+
+.demo-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  justify-content: center;
+}
+
+.demo-icon {
+  font-size: 1.1rem;
+}
+
+.demo-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #7a5c00;
+}
+
+.demo-subtitle {
+  font-size: 0.78rem;
+  color: #a88c30;
+  margin-left: 4px;
+}
+
+.demo-accounts {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.demo-account {
+  flex: 1;
+  min-width: 220px;
+  max-width: 300px;
+  border-radius: 10px;
+  padding: 14px 16px;
+  text-align: left;
+}
+
+.teacher-account {
+  background: #f0faf2;
+  border: 1px solid #a8ddb8;
+}
+
+.student-account {
+  background: #f0f6ff;
+  border: 1px solid #a8c8f0;
+}
+
+.account-role-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.account-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.account-label {
+  font-size: 0.72rem;
+  color: #888;
+  min-width: 58px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.account-value {
+  font-size: 0.8rem;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 3px 8px;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  user-select: all;
+}
+
+.account-value:hover {
+  background: #f0f7ff;
+  border-color: #90b8e8;
+}
+
 .dashboard-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -58,7 +158,6 @@
   margin-top: 40px;
 }
 
-/* ===== CARDS ===== */
 .card {
   background: var(--color-white);
   padding: 30px;
@@ -101,7 +200,6 @@
   font-weight: 700;
 }
 
-/* ===== MODULES ===== */
 .module-list {
   display: flex;
   flex-direction: column;
@@ -172,7 +270,6 @@
   color: #333;
 }
 
-/* ===== FLOW / ARCHITECTURE ===== */
 .flow-grid {
   display: flex;
   align-items: center;
@@ -232,7 +329,6 @@
   font-size: 0.78rem;
 }
 
-/* ===== API TABLE ===== */
 .api-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -296,7 +392,6 @@
 .method.patch  { background: #fff3dd; color: #a06000; }
 .method.delete { background: #fde8e8; color: #a82020; }
 
-/* ===== TECH STACK (unchanged from original) ===== */
 .tech-stack {
   display: flex;
   flex-direction: column;

@@ -12,6 +12,38 @@
         </div>
     </header>
 
+    <div class="demo-credentials">
+        <div class="demo-header">
+            <span class="demo-icon">🔑</span>
+            <span class="demo-title">Demo Accounts</span>
+            <span class="demo-subtitle">Ready to use — just copy &amp; paste</span>
+        </div>
+        <div class="demo-accounts">
+            <div class="demo-account teacher-account">
+                <div class="account-role-badge">👨‍🏫 Teacher</div>
+                <div class="account-row">
+                    <span class="account-label">Email</span>
+                    <code class="account-value" (click)="copyToClipboard('mary.johnson@uni.edu')" title="Click to copy">mary.johnson&#64;uni.edu</code>
+                </div>
+                <div class="account-row">
+                    <span class="account-label">Password</span>
+                    <code class="account-value" (click)="copyToClipboard('Teacher123!')" title="Click to copy">Teacher123!</code>
+                </div>
+            </div>
+            <div class="demo-account student-account">
+                <div class="account-role-badge">🎓 Student</div>
+                <div class="account-row">
+                    <span class="account-label">Email</span>
+                    <code class="account-value" (click)="copyToClipboard('alice.brown@student.uni.edu')" title="Click to copy">alice.brown&#64;student.uni.edu</code>
+                </div>
+                <div class="account-row">
+                    <span class="account-label">Password</span>
+                    <code class="account-value" (click)="copyToClipboard('Student123!')" title="Click to copy">Student123!</code>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="dashboard-cards">
 
@@ -31,7 +63,7 @@
                 The application is a proof-of-concept university management system. Some features may be incomplete or
                 not production-ready.</p>
             <p style="margin-top: 12px; color: #666; font-size: 0.88rem;">
-                <strong>Backend:</strong> Spring Boot 3.3 · Java 21 · H2 in-memory DB · REST API at
+                <strong>Backend:</strong> Spring Boot 3.3 · Java 21 · Postgresql  · REST API at
                 <code>http://localhost:8080</code> &nbsp;|&nbsp;
                 <strong>Frontend:</strong> Angular 17+ · Standalone Components
             </p>
@@ -67,8 +99,8 @@
                 <div class="flow-arrow">→</div>
                 <div class="flow-step">
                     <div class="flow-icon">🗄️</div>
-                    <div class="flow-label">H2 Database</div>
-                    <div class="flow-sub">In-memory<br>Hibernate ORM</div>
+                    <div class="flow-label">Database</div>
+                    <div class="flow-sub">Postgresql</div>
                 </div>
             </div>
             <div class="auth-note">
@@ -388,7 +420,7 @@
                 <div class="tech-group">
                     <span class="tech-category">Database</span>
                     <div class="tech-pills">
-                        <span class="pill">H2 (in-memory)</span>
+                        <span class="pill">Postgresql</span>
                         <span class="pill">Hibernate ORM</span>
                     </div>
                 </div>
