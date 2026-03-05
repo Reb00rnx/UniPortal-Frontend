@@ -14,7 +14,7 @@ export interface ScheduleEventDto {
   providedIn: 'root',
 })
 export class ScheduleService {
-  private apiUrl = 'http://localhost:8080/api/schedule';
+  private apiUrl = 'https://uniportal-r6nm.onrender.com/api/schedule';
 
   constructor(private http: HttpClient) { }
 

@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class UserService {
-  private apiUrl = 'http://localhost:8080/api/users';
+  private apiUrl = 'https://uniportal-r6nm.onrender.com/api/users';
   constructor(private http: HttpClient) { }
 
 

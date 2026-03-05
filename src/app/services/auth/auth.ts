@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/api/auth';
+  private apiUrl = 'https://uniportal-r6nm.onrender.com/api/auth';
   private http = inject(HttpClient);
 
   constructor() { }

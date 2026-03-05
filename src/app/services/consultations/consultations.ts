@@ -25,7 +25,7 @@ export interface ConsultationRequestDto {
   providedIn: 'root',
 })
 export class ConsultationsService {
-  private readonly apiUrl = 'http://localhost:8080/api/consultations';
+  private readonly apiUrl = 'https://uniportal-r6nm.onrender.com/api/consultations';
 
   constructor(private http: HttpClient) { }
 

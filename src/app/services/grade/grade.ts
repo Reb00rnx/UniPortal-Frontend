@@ -38,7 +38,7 @@ export interface StudentPerformanceDto {
   providedIn: 'root',
 })
 export class GradeService {
-  private apiUrl = 'http://localhost:8080/api/grade';
+  private apiUrl = 'https://uniportal-r6nm.onrender.com/api/grade';
 
   constructor(private http: HttpClient) { }
 

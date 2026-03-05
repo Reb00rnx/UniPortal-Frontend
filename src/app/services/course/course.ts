@@ -59,7 +59,7 @@ export interface ModuleResponseDto {
 
 export class CourseService {
 
-  private readonly apiUrl = 'http://localhost:8080/api/courses';
+  private readonly apiUrl = 'https://uniportal-r6nm.onrender.com/api/courses';
 
   constructor(private http: HttpClient) { }
 
