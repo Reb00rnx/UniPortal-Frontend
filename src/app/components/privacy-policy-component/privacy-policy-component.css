@@ -1,0 +1,57 @@
+.wrapper {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+    min-height: calc(100vh - 160px)
+}
+
+.privacy-card {
+    max-width: 800px;
+    width: 90%;
+    padding: 30px 45px;
+
+    background: var(--color-white);
+    box-sizing: border-box;
+}
+
+.categories {
+    padding-bottom: 20px;
+    color: var(--color-primary);
+    text-align: center;
+    font-size: 2rem;
+}
+
+.privacy-section {
+    margin-bottom: 15px;
+}
+
+.privacy-section h3 {
+    margin-bottom: 6px;
+    font-size: 1.15rem;
+    color: var(--color-primary);
+}
+
+.privacy-section p,
+.privacy-section li {
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.privacy-section ul {
+    margin-left: 20px;
+}
+
+.footer {
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.privacy-container {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}

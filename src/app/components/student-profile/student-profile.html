@@ -1,0 +1,58 @@
+<main>
+  @if (user) {
+  <div class="profile-card ready-card">
+    <div class="card-info">
+      <div class="card-header"></div>
+      <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Index number:</strong> {{ user.indexNumber }}</p>
+      <p><strong>Department:</strong> {{ user.department || 'Not specified' }}</p>
+      <p><strong>Major:</strong> {{ user.major || 'Not specified' }}</p>
+    </div>
+  </div>
+
+  <div class="wrapper">
+    <div class="user-grades">
+      <div class="header">
+        <h2>Grades</h2>
+        <div class="line"></div>
+      </div>
+
+      <div class="grades-list">
+        @if (courseAverages.length > 0) {
+        <div class="grades-labels">
+          <span class="label-name">Course Name</span>
+          <span class="label-avg">Average Grade</span>
+        </div>
+        }
+        @for (course of courseAverages; track course.name) {
+        <div class="grade-row">
+          <span class="course-name">{{ course.name }}</span>
+          <strong class="course-avg">{{ course.average | number:'1.2-2' }}</strong>
+        </div>
+        } @empty {
+        <p>No grades available yet.</p>
+        }
+      </div>
+    </div>
+
+    <div class="incommingDates">
+      <div class="header">
+        <h2>Incoming Dates</h2>
+        <div class="line"></div>
+      </div>
+
+      <div class="dates-list">
+        @for (event of upcomingEvents; track event.id) {
+        <div class="date-row">
+          <span class="date-day"><strong>{{ event.eventDate }}</strong></span>
+          <span class="date-title">{{ event.title }}</span>
+        </div>
+        } @empty {
+        <p>No upcoming events.</p>
+        }
+      </div>
+    </div>
+  </div>
+  }
+</main>

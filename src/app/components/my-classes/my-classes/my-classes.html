@@ -1,0 +1,53 @@
+<div class="wrapper">
+    <div class="title-section">
+        <h1 class="title">Available Courses</h1>
+        <button class="btn-1 btn-crt" (click)="openModal()">Create course</button>
+    </div>
+
+    <div class="ready-card main-card">
+        <div class="courses-grid">
+            @for (course of courses; track course.id) {
+            <div class="course-card">
+                <div class="course-info">
+                    <h3 style="margin: 0;">{{ course.name }}</h3>
+                    <p style="margin: 5px 0 0 0; color: gray;">{{ course.code }}</p>
+                </div>
+
+                <div class="btn-container">
+                    <button class="btn-1" [routerLink]="['/teacher/gradebook']" [queryParams]="{ id: course.id }">
+                        Gradebook
+                    </button>
+                    <button class="btn-1" (click)="viewCourse(course.id)">Enter</button>
+                </div>
+            </div>
+            } @empty {
+            <p>You don't have any courses yet.</p>
+            }
+        </div>
+    </div>
+</div>
+
+
+@if (isModalOpen) {
+<div class="modal-overlay">
+    <div class="modal-content">
+        <h2>Create New Course</h2>
+
+        <div class="input-group">
+            <label>Course Name</label>
+            <input type="text" [(ngModel)]="newCourse.name" placeholder="e.g. Advanced Java">
+        </div>
+
+        <div class="input-group">
+            <label>Description</label>
+            <textarea [(ngModel)]="newCourse.description" placeholder="Short course overview..."></textarea>
+        </div>
+
+        <div class="modal-actions">
+            <button class="btn-1 btn-save" (click)="handleSave()">Create</button>
+            <button class="btn-1" (click)="closeModal()">Cancel</button>
+
+        </div>
+    </div>
+</div>
+}

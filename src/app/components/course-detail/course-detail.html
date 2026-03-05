@@ -1,0 +1,80 @@
+@if (course) {
+<div class="course-detail-container">
+
+  <div class="ready-card header-block">
+    <h2>Course Details: {{ course.name }}</h2>
+    <div class="header-meta">
+      <span><strong>Code:</strong> {{ course.code }}</span>
+      <span><strong>Teacher:</strong> {{ course.teacher.firstName }} {{ course.teacher.lastName }}</span>
+    </div>
+  </div>
+
+  <div class="course-layout">
+
+    <div class="modules-column">
+      <div class="section-header-flex">
+        <h3 class="section-title">Syllabus & Materials</h3>
+        @if (isTeacher) {
+        <button class="btn-add-module" (click)="toggleAddForm()">
+          {{ showAddForm ? '✕ Close' : '+ New Module' }}
+        </button>
+        }
+      </div>
+
+      @if (isTeacher && showAddForm) {
+      <div class="ready-card add-form-card">
+        <h4>New Module Details</h4>
+        <input class="input-field" [(ngModel)]="newModule.title" placeholder="Module Title" #title="ngModel"
+          required="">
+        @if (title.invalid && title.touched) { <span class="error-text">Please enter new module title</span> }
+        <textarea class="input-field" [(ngModel)]="newModule.description" placeholder="Description" required
+          #description="ngModel"></textarea>
+        @if (description.invalid && description.touched) { <span class="error-text">Please enter new module
+          description</span> }
+        <button class="btn-save" (click)="saveModule()">Save Module</button>
+      </div>
+      }
+
+      @for (module of course.modules; track module.id) {
+      <div class="ready-card module-card">
+        <div class="module-header">
+          <div class="module-icon">{{ module.orderIndex }}</div>
+          <h4>{{ module.title }}</h4>
+
+          @if (isTeacher) {
+          <button class="btn-delete" (click)="deleteModule(module.id)" title="Delete module">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+          }
+        </div>
+        <p class="module-desc">{{ module.description }}</p>
+
+        <ul class="resource-list">
+          <li>📄 Download Materials</li>
+        </ul>
+      </div>
+      } @empty {
+      <div class="ready-card">
+        <p>This course does not have any modules defined yet.</p>
+      </div>
+      }
+    </div>
+
+    <div class="sidebar-column">
+      <h3 class="section-title"></h3>
+
+      <div class="ready-card links-card">
+        <h4>Quick Links</h4>
+        <button class="btn-link" (click)="openConsultations()">Online Consultations</button>
+        <button class="btn-link" (click)="openForum()">Group Forum</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+} @else {
+<div class="loading">
+  <div class="spinner"></div>
+  <p>Loading course data...</p>
+</div>
+}

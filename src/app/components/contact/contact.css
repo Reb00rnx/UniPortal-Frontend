@@ -1,0 +1,61 @@
+.container {
+  background: var(--color-primary);
+  padding: 30px;
+  border-radius: 12px;
+  border: 5px solid var(--color-accent);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.74);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  max-width: 500px;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+
+}
+
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #eee;
+  font-size: var(--text-large);
+  font-weight: bold;
+}
+
+
+.contact-row i {
+  font-size: 24px;
+  width: 30px;
+  text-align: center;
+}
+
+.contact-row span {
+  cursor: pointer;
+}
+
+.contact-row a {
+  color: #eee;
+  text-decoration: none;
+}
+
+.contact-row a:hover {
+  text-decoration: underline;
+  color: var(--color-accent);
+}
+
+
+.fa-brands.fa-linkedin {
+  color: #0077b5;
+}
+
+.header-text {
+  color: #eee;
+  font-size: var(--text-title);
+}

@@ -1,0 +1,276 @@
+.gradebook-container {
+  padding: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.ready-card {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+  margin-bottom: 20px;
+  border-left: 5px solid #3498db;
+}
+
+.header-block {
+  border-left: 5px solid var(--color-primary);
+}
+
+.header-block h2 {
+  margin: 0 0 6px 0;
+  font-size: 1.4rem;
+  border-left: 5px;
+}
+
+.header-block p {
+  margin: 0;
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+.grade-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.grade-table thead tr,
+.grade-table tbody tr {
+  display: table-row;
+}
+
+.grade-table th,
+.grade-table td {
+  padding: 12px 8px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.grade-table th:nth-child(1),
+.grade-table td:nth-child(1) {
+  width: 30%;
+}
+
+.grade-table th:nth-child(2),
+.grade-table td:nth-child(2) {
+  width: 50%;
+}
+
+.grade-table th:nth-child(3),
+.grade-table td:nth-child(3) {
+  width: 20%;
+}
+
+.grade-table thead tr {
+  border-bottom: 2px solid #ecf0f1;
+  color: #95a5a6;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.grade-table tbody tr {
+  border-bottom: 1px solid #f5f6f7;
+  transition: background 0.15s;
+}
+
+.grade-table tbody tr:hover {
+  background-color: #f8fbff;
+}
+
+.student-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.student-info strong {
+  color: #2c3e50;
+  font-size: 0.95rem;
+}
+
+
+.index-sub {
+  font-size: 0.78rem;
+  color: #b2bec3;
+}
+
+.grades-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.grade-pill-mini {
+  background: #3498db;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 2px 4px rgba(52, 152, 219, 0.25);
+  user-select: none;
+}
+
+.clickable {
+  cursor: pointer;
+  transition: transform 0.15s, filter 0.15s, box-shadow 0.15s;
+}
+
+.clickable:hover {
+  transform: scale(1.1);
+  filter: brightness(1.1);
+  box-shadow: 0 4px 10px rgba(52, 152, 219, 0.45);
+}
+
+.no-grades {
+  color: #bdc3c7;
+  font-style: italic;
+  font-size: 0.85rem;
+}
+
+
+.btn-add-grade:hover {
+  background: var(--color-accent);
+  color: white;
+}
+
+
+.input-field {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1.5px solid #dfe6e9;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  resize: vertical;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 40, 55, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+}
+
+.edit-modal {
+  width: 100%;
+  max-width: 460px;
+  animation: slideIn 0.25s ease-out;
+}
+
+.modal-header {
+  margin-bottom: 4px;
+}
+
+.modal-header h3 {
+  margin: 0 0 4px 0;
+  color: #2c3e50;
+  font-size: 1.15rem;
+}
+
+.modal-subtitle {
+  margin: 0;
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+.grade-badge-display {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0;
+}
+
+.grade-badge-large {
+  background: #3498db;
+  color: white;
+  font-size: 2rem;
+  font-weight: 800;
+  padding: 12px 32px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(52, 152, 219, 0.35);
+}
+
+.form-group {
+  margin: 16px 0;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: #2c3e50;
+}
+
+.required {
+  color: #e74c3c;
+}
+
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  gap: 10px;
+}
+
+.right-btns {
+  display: flex;
+  gap: 10px;
+}
+
+
+
+
+
+
+.btn-delete:hover {
+  background: #e74c3c;
+  color: white;
+  border-color: #e74c3c;
+}
+
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+.description-view {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #2c3e50;
+  line-height: 1.5;
+  min-height: 60px;
+  white-space: pre-wrap;
+}

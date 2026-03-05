@@ -1,0 +1,18 @@
+<main>
+  <full-calendar [options]="calendarOptions"></full-calendar>
+
+  @if (isModalOpen) {
+  <div class="modal-overlay">
+    <div class="modal-content">
+      <h3>Dodaj wydarzenie dla: {{ selectedDateStr }}</h3>
+
+      <input type="text" [(ngModel)]="newEventTitle" placeholder="Nazwa wydarzenia..." (keyup.enter)="addEvent()">
+
+      <div class="modal-actions">
+        <button (click)="closeModal()">Anuluj</button>
+        <button (click)="addEvent()" class="btn-save">Zapisz</button>
+      </div>
+    </div>
+  </div>
+  }
+</main>

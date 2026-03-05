@@ -1,0 +1,122 @@
+<main class="register-container">
+    <div class="wrapper">
+        <div class="main-sec">
+            <div class="image-section">
+                <img src="uniPhoto.png" alt="Register image">
+            </div>
+
+            <div class="form-section">
+                <div class="ready-card fade-in">
+
+                    <div class="role-switcher">
+                        <button type="button" [class.active]="selectedRole() === 'student'"
+                            (click)="setRole('student')">Student</button>
+                        <button type="button" [class.active]="selectedRole() === 'teacher'"
+                            (click)="setRole('teacher')">Teacher</button>
+                    </div>
+
+                    @if (selectedRole() === 'student') {
+                    <div id="student_form">
+                        <h2>Student Registration</h2>
+                        @if (errorMessage) { <div class="error-box">{{errorMessage}}</div> }
+
+                        <form class="forms" #studentForm="ngForm" (ngSubmit)="onRegister()">
+                            <input type="text" name="studentFirstName" required placeholder="First name"
+                                [(ngModel)]="studentData.firstName" #sname="ngModel">
+                            @if (sname.invalid && sname.touched) { <span class="error-text">Please enter your first
+                                name</span> }
+
+                            <input type="text" name="studentLastName" required placeholder="Last name"
+                                [(ngModel)]="studentData.lastName" #slastName="ngModel">
+                            @if (slastName.invalid && slastName.touched) { <span class="error-text">Please enter your
+                                last name</span> }
+
+                            <input type="password" name="studentPassword" required placeholder="Password"
+                                [(ngModel)]="studentData.password" #spassword="ngModel">
+                            @if (spassword.invalid && spassword.touched) { <span class="error-text">Please enter your
+                                password</span> }
+
+                            <input type="password" name="studentRepeatPassword" required placeholder="Repeat password"
+                                [(ngModel)]="repeatPassword" #srepeat="ngModel">
+                            @if (srepeat.touched && studentData.password !== repeatPassword) { <span
+                                class="error-text">Passwords do not match</span> }
+
+                            <button class="btn-1 register-button" type="submit"
+                                [disabled]="studentForm.invalid || studentData.password !== repeatPassword">Register</button>
+                        </form>
+                        <p class="hasAccount">Already have an account? <a routerLink="/login">Login here</a></p>
+                    </div>
+                    }
+
+                    @if (selectedRole() === 'teacher') {
+                    <div id="teacher_form">
+                        <h2>Teacher Registration</h2>
+                        @if (errorMessage) { <div class="error-box">{{errorMessage}}</div> }
+
+                        <form class="forms" #teacherForm="ngForm" (ngSubmit)="onRegister()">
+                            <input type="text" name="teacherFirstName" required placeholder="First name"
+                                [(ngModel)]="teacherData.firstName" #tname="ngModel">
+                            @if (tname.invalid && tname.touched) { <span class="error-text">Please enter your first
+                                name</span> }
+
+                            <input type="text" name="teacherLastName" required placeholder="Last name"
+                                [(ngModel)]="teacherData.lastName" #tlast="ngModel">
+                            @if (tlast.invalid && tlast.touched) { <span class="error-text">Please enter your last
+                                name</span> }
+
+                            <input type="password" name="teacherPassword" required placeholder="Password"
+                                [(ngModel)]="teacherData.password" #tpassword="ngModel">
+                            @if (tpassword.invalid && tpassword.touched) { <span class="error-text">Please enter your
+                                password</span> }
+
+                            <input type="password" name="teacherRepeatPassword" required placeholder="Repeat password"
+                                [(ngModel)]="repeatPassword" #trepeat="ngModel">
+                            @if (trepeat.touched && teacherData.password !== repeatPassword) { <span
+                                class="error-text">Passwords do not match</span> }
+
+                            <select name="academicTitle" required [(ngModel)]="teacherData.academicTitle"
+                                #tTitle="ngModel">
+                                <option value="" disabled hidden>-- Select your academic title --</option>
+                                <option value="inz">inz</option>
+                                <option value="mgr">mgr</option>
+                                <option value="mgr_inz">mgr_inz</option>
+                                <option value="dr">dr</option>
+                                <option value="dr_hab">dr_hab</option>
+                                <option value="prof">prof</option>
+                            </select>
+                            @if (tTitle.invalid && tTitle.touched) { <span class="error-text">Please select your
+                                title</span> }
+
+                            <select name="departmentName" required [(ngModel)]="teacherData.departmentName"
+                                #tDept="ngModel">
+                                <option value="" disabled hidden>-- Select your department name --</option>
+                                <option value="COMPUTER_SCIENCE">COMPUTER_SCIENCE</option>
+                                <option value="MATHEMATICS">MATHEMATICS</option>
+                                <option value="AUTOMATION_AND_ROBOTICS">AUTOMATION_AND_ROBOTICS</option>
+                                <option value="PHYSICS">PHYSICS</option>
+                                <option value="ECONOMICS">ECONOMICS</option>
+                            </select>
+                            @if (tDept.invalid && tDept.touched) { <span class="error-text">Please select your
+                                department</span> }
+
+                            <button class="btn-1 register-button" type="submit"
+                                [disabled]="teacherForm.invalid || teacherData.password !== repeatPassword">Register</button>
+                        </form>
+                        <p class="hasAccount">Already have an account? <a routerLink="/login">Login here</a></p>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-container">
+                <p>&copy; 2026 UNI Portal. All rights reserved.</p>
+                <div class="footer-links">
+                    <a routerLink="/privacyP">Privacy Policy</a>
+                    <a routerLink="/contactP">Contact</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</main>

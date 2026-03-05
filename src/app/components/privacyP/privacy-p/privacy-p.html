@@ -1,0 +1,61 @@
+<div class="wrapper">
+    <div class="ready-card privacy-card">
+        <h1 class="categories">Privacy Policy</h1>
+
+        <section class="privacy-section">
+            <p>This policy describes how the University Portal manages and protects your data. As an educational
+                project, we prioritize transparency and security.</p>
+        </section>
+
+        <section class="privacy-section">
+            <h3>1. Data We Collect</h3>
+            <p>We process only the data necessary for the academic system's functionality:</p>
+            <ul>
+                <li><strong>Personal Information:</strong> First name, last name, index number, and system role (Student
+                    or Teacher).</li>
+                <li><strong>Authentication Data:</strong> E-mail address and hashed passwords used for secure login.
+                </li>
+                <li><strong>Academic Data:</strong> Course enrollment, course codes, and <strong>academic grades (values
+                        and descriptions)</strong>.</li>
+            </ul>
+        </section>
+
+        <section class="privacy-section">
+            <h3>2. How We Use Your Data</h3>
+            <p>Your information is used strictly to:</p>
+            <ul>
+                <li>Authorize access via JWT (JSON Web Tokens).</li>
+                <li>Handle the course enrollment and <strong>grade management logic</strong> in the database.</li>
+                <li><strong>Generate academic performance reports</strong> for students and teachers.</li>
+                <li>Filter and display courses and grades assigned to your specific User ID.</li>
+            </ul>
+        </section>
+
+        <section class="privacy-section">
+            <h3>3. Security Measures</h3>
+            <p>To protect your privacy, we implement:</p>
+            <ul>
+                <li><strong>Password Hashing:</strong> Passwords are never stored in plain text.</li>
+                <li><strong>Stateless Security:</strong> We use Spring Security filters to protect every API request.
+                </li>
+                <li><strong>Role-Based Access Control (RBAC):</strong> Grading actions are restricted to users with the
+                    'Teacher' role.</li>
+            </ul>
+        </section>
+
+        <section class="privacy-section">
+            <h3>4. Contact</h3>
+            <p>If you have any questions regarding this project, feel free to use the <strong>Contact</strong> tab.</p>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 UNI Portal. All rights reserved.</p>
+            <div class="footer-links">
+                <a routerLink="/privacyP">Privacy Policy</a>
+                <a routerLink="/contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+</div>

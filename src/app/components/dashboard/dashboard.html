@@ -1,0 +1,414 @@
+<main class="dash-container">
+
+    <div class="logoTxt">
+        <img src="logoUp.png" alt="UNI Portal Logo">
+    </div>
+
+    <header class="hero-section">
+        <h1>UNI Portal</h1>
+        <p>University Management System &mdash; interactive map of the entire application</p>
+        <div class="role-badge" [class.badge-student]="isStudent" [class.badge-teacher]="isTeacher">
+            {{ isTeacher ? '👨‍🏫 You are logged in as: TEACHER' : '🎓 You are logged in as: STUDENT' }}
+        </div>
+    </header>
+
+
+    <div class="dashboard-cards">
+
+        <div class="card highlight">
+            <h2>📋 About the Project</h2>
+            <p>
+                <strong>UNI Portal</strong> is a full-stack university management system offering a separate interface
+                for
+                students and teachers. It handles user identity, course management, grade tracking, schedule planning,
+                and consultation scheduling — all secured with JWT-based authentication.
+            </p>
+            <br>
+            <p><strong>UNI Portal</strong> is my first full-stack project, built entirely for learning and portfolio
+                purposes. It is not
+                a commercial product and is not intended for production use — the primary goal was to gain hands-on
+                experience with Java, Spring Boot, and Angular by building something real from scratch.
+                The application is a proof-of-concept university management system. Some features may be incomplete or
+                not production-ready.</p>
+            <p style="margin-top: 12px; color: #666; font-size: 0.88rem;">
+                <strong>Backend:</strong> Spring Boot 3.3 · Java 21 · H2 in-memory DB · REST API at
+                <code>http://localhost:8080</code> &nbsp;|&nbsp;
+                <strong>Frontend:</strong> Angular 17+ · Standalone Components
+            </p>
+        </div>
+
+
+        <div class="card full-width">
+            <h2>🏗️ Architecture &amp; Auth Flow</h2>
+            <div class="flow-grid">
+                <div class="flow-step">
+                    <div class="flow-icon">🌐</div>
+                    <div class="flow-label">Browser</div>
+                    <div class="flow-sub">Angular SPA</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="flow-icon">🔒</div>
+                    <div class="flow-label">authInterceptor</div>
+                    <div class="flow-sub">Attaches Bearer token<br>to every HTTP request</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="flow-icon">🛡️</div>
+                    <div class="flow-label">authGuard</div>
+                    <div class="flow-sub">Checks token + role<br>before route activation</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="flow-icon">⚙️</div>
+                    <div class="flow-label">Spring Boot API</div>
+                    <div class="flow-sub">JWT validation<br>Spring Security</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="flow-icon">🗄️</div>
+                    <div class="flow-label">H2 Database</div>
+                    <div class="flow-sub">In-memory<br>Hibernate ORM</div>
+                </div>
+            </div>
+            <div class="auth-note">
+                <strong>JWT payload:</strong> contains <code>id</code> (userId) and <code>role</code>
+                (<code>ROLE_STUDENT</code> / <code>ROLE_TEACHER</code>) — decoded client-side in
+                <code>AuthService.getUserId()</code> and <code>AuthService.getUserRole()</code>.
+                Token is stored in <code>localStorage</code>.
+            </div>
+        </div>
+
+
+        <div class="card section-card" [class.active-role]="isStudent">
+            <h2>🎓 Student Module <span *ngIf="isStudent" class="you-badge">← YOU</span></h2>
+            <div class="module-list">
+
+                <div class="module-item">
+                    <div class="module-header">
+                        <span class="module-icon">👤</span>
+                        <strong>Profile</strong>
+                        <span class="route-pill">/student/profile</span>
+                    </div>
+                    <ul>
+                        <li>Displays user data fetched from <code>GET /api/users/user/&#123;id&#125;</code></li>
+                        <li>Shows per-course grade averages (calculated client-side from all grades)</li>
+                        <li>Lists the 5 nearest upcoming schedule events</li>
+                    </ul>
+                </div>
+
+                <div class="module-item">
+                    <div class="module-header">
+                        <span class="module-icon">📚</span>
+                        <strong>Courses</strong>
+                        <span class="route-pill">/student/courses</span>
+                    </div>
+                    <ul>
+                        <li>Lists all courses from <code>GET /api/courses/all</code></li>
+                        <li>Shows enrolment status — highlights courses the student already belongs to</li>
+                        <li>Enrol button →
+                            <code>PATCH /api/courses/&#123;courseId&#125;/enroll/&#123;studentId&#125;</code>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="module-item">
+                    <div class="module-header">
+                        <span class="module-icon">🔍</span>
+                        <strong>Course Detail</strong>
+                        <span class="route-pill">/student/courses/:id</span>
+                    </div>
+                    <ul>
+                        <li>Loads full course info: name, description, teacher, students, modules</li>
+                        <li>Displays ordered module list (read-only for students)</li>
+                        <li>Buttons: <em>Ask AI</em> (Gemini) &amp; <em>Forum</em> (StackOverflow) — external links</li>
+                    </ul>
+                </div>
+
+                <div class="module-item">
+                    <div class="module-header">
+                        <span class="module-icon">📊</span>
+                        <strong>Grades</strong>
+                        <span class="route-pill">/student/grades</span>
+                    </div>
+                    <ul>
+                        <li>Fetches all grades via <code>GET /api/grade/student/&#123;id&#125;</code></li>
+                        <li>Groups grades by course name (client-side reduce)</li>
+                        <li>Click on a grade → modal with full details (value, description)</li>
+                    </ul>
+                </div>
+
+                <div class="module-item">
+                    <div class="module-header">
+                        <span class="module-icon">📅</span>
+                        <strong>Schedule</strong>
+                        <span class="route-pill">/student/schedule</span>
+                    </div>
+                    <ul>
+                        <li>FullCalendar (dayGridMonth view) — interactive monthly calendar</li>
+                        <li>Click on a date → modal to add a named event</li>
+                        <li>Events saved via <code>POST /api/schedule/&#123;userId&#125;/add</code></li>
+                        <li>Loaded via <code>GET /api/schedule/&#123;userId&#125;/all</code></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="card section-card" [class.active-role]="isTeacher">
+            <h2>👨‍🏫 Teacher Module <span *ngIf="isTeacher" class="you-badge">← YOU</span></h2>
+            <div class="module-list">
+
+                <div class="module-item">
+                    <div class="module-header">
+                        <span class="module-icon">👤</span>
+                        <strong>Profile</strong>
+                        <span class="route-pill">/teacher/profile</span>
+                    </div>
+                    <ul>
+                        <li>Displays teacher data + academic title + department</li>
+                        <li>Shows list of assigned courses with student count</li>
+                        <li>Upcoming events panel (next 5 from schedule)</li>
+                        <li>Consultation management: add/edit day, time, room</li>
+                        <li>API: <code>POST /api/consultations</code> ·
+                            <code>PATCH /api/consultations/update/&#123;id&#125;</code>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="module-item">
+                    <div class="module-header">
+                        <span class="module-icon">🏫</span>
+                        <strong>My Classes</strong>
+                        <span class="route-pill">/teacher/my-classes</span>
+                    </div>
+                    <ul>
+                        <li>Lists teacher's own courses via <code>GET /api/courses/teacher/&#123;teacherId&#125;</code>
+                        </li>
+                        <li>Modal to create a new course → <code>POST /api/courses</code></li>
+                        <li>Click on course → navigates to Course Detail view</li>
+                    </ul>
+                </div>
+
+                <div class="module-item">
+                    <div class="module-header">
+                        <span class="module-icon">🔍</span>
+                        <strong>Course Detail</strong>
+                        <span class="route-pill">/teacher/courses/:id</span>
+                    </div>
+                    <ul>
+                        <li>Same component as student but teacher-mode unlocks extra controls</li>
+                        <li>Add module form → <code>POST /api/courses/&#123;courseId&#125;/modules</code></li>
+                        <li>Delete module → <code>DELETE /api/courses/modules/&#123;moduleId&#125;</code></li>
+                    </ul>
+                </div>
+
+                <div class="module-item">
+                    <div class="module-header">
+                        <span class="module-icon">📝</span>
+                        <strong>Gradebook</strong>
+                        <span class="route-pill">/teacher/gradebook?id=&#123;courseId&#125;</span>
+                    </div>
+                    <ul>
+                        <li>Loads course + all enrolled students</li>
+                        <li>Per-student grade table with clickable pills (view/delete modal)</li>
+                        <li>Add grade modal: value (5.0→2.0) + description field</li>
+                        <li>Values mapped: <code>5.0→FIVE, 4.5→FOUR_HALF …</code></li>
+                        <li>API: <code>POST /api/grade</code> · <code>DELETE /api/grade/&#123;id&#125;</code></li>
+                    </ul>
+                </div>
+
+                <div class="module-item">
+                    <div class="module-header">
+                        <span class="module-icon">📅</span>
+                        <strong>Schedule</strong>
+                        <span class="route-pill">/teacher/schedule</span>
+                    </div>
+                    <ul>
+                        <li>Same FullCalendar component as student — shared between roles</li>
+                        <li>Events are user-scoped (by userId from JWT)</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="card">
+            <h2>🔓 Public &amp; Shared Pages</h2>
+            <div class="module-list">
+                <div class="module-item">
+                    <div class="module-header">
+                        <span class="module-icon">🔑</span>
+                        <strong>Login</strong>
+                        <span class="route-pill">/login</span>
+                    </div>
+                    <ul>
+                        <li><code>POST /api/auth/authenticate</code> → JWT saved to localStorage</li>
+                        <li>Role decoded from token → redirect to <code>/student/dashboard</code> or
+                            <code>/teacher/dashboard</code>
+                        </li>
+                    </ul>
+                </div>
+                <div class="module-item">
+                    <div class="module-header">
+                        <span class="module-icon">📝</span>
+                        <strong>Register</strong>
+                        <span class="route-pill">/register</span>
+                    </div>
+                    <ul>
+                        <li><code>POST /api/auth/register/student</code> or <code>/register/teacher</code></li>
+                    </ul>
+                </div>
+                <div class="module-item">
+                    <div class="module-header">
+                        <span class="module-icon">📜</span>
+                        <strong>Privacy Policy &amp; Contact</strong>
+                        <span class="route-pill">/student/privacy · /teacher/privacy</span>
+                    </div>
+                    <ul>
+                        <li>Static pages, available from footer — also exist as public routes <code>/privacyP</code> and
+                            <code>/contactP</code> (no auth required)
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card full-width">
+            <h2>🗺️ Complete API Endpoint Map</h2>
+            <div class="api-grid">
+                <div class="api-group">
+                    <div class="api-group-title">Auth · <code>/api/auth</code></div>
+                    <div class="api-row"><span class="method post">POST</span><code>/authenticate</code><span>Login →
+                            JWT</span></div>
+                    <div class="api-row"><span
+                            class="method post">POST</span><code>/register/student</code><span>Register student</span>
+                    </div>
+                    <div class="api-row"><span
+                            class="method post">POST</span><code>/register/teacher</code><span>Register teacher</span>
+                    </div>
+                </div>
+                <div class="api-group">
+                    <div class="api-group-title">Users · <code>/api/users</code></div>
+                    <div class="api-row"><span class="method get">GET</span><code>/user/&#123;id&#125;</code><span>Fetch
+                            user data</span></div>
+                </div>
+                <div class="api-group">
+                    <div class="api-group-title">Courses · <code>/api/courses</code></div>
+                    <div class="api-row"><span class="method post">POST</span><code>/</code><span>Create course</span>
+                    </div>
+                    <div class="api-row"><span class="method get">GET</span><code>/all</code><span>All courses</span>
+                    </div>
+                    <div class="api-row"><span
+                            class="method get">GET</span><code>/teacher/&#123;id&#125;</code><span>Teacher's
+                            courses</span></div>
+                    <div class="api-row"><span class="method get">GET</span><code>/&#123;id&#125;</code><span>Single
+                            course detail</span></div>
+                    <div class="api-row"><span
+                            class="method patch">PATCH</span><code>/&#123;id&#125;/enroll/&#123;studentId&#125;</code><span>Enrol
+                            student</span></div>
+                    <div class="api-row"><span
+                            class="method delete">DEL</span><code>/delete/&#123;id&#125;</code><span>Delete
+                            course</span></div>
+                    <div class="api-row"><span
+                            class="method post">POST</span><code>/&#123;id&#125;/modules</code><span>Add module</span>
+                    </div>
+                    <div class="api-row"><span
+                            class="method delete">DEL</span><code>/modules/&#123;id&#125;</code><span>Delete
+                            module</span></div>
+                </div>
+                <div class="api-group">
+                    <div class="api-group-title">Grades · <code>/api/grade</code></div>
+                    <div class="api-row"><span class="method post">POST</span><code>/</code><span>Add grade</span></div>
+                    <div class="api-row"><span
+                            class="method get">GET</span><code>/student/&#123;id&#125;</code><span>All student
+                            grades</span></div>
+                    <div class="api-row"><span
+                            class="method get">GET</span><code>/summary/&#123;studentId&#125;/&#123;courseId&#125;</code><span>Course
+                            summary</span></div>
+                    <div class="api-row"><span
+                            class="method get">GET</span><code>/course/&#123;id&#125;/report</code><span>Teacher
+                            report</span></div>
+                    <div class="api-row"><span class="method delete">DEL</span><code>/&#123;id&#125;</code><span>Delete
+                            grade</span></div>
+                </div>
+                <div class="api-group">
+                    <div class="api-group-title">Schedule · <code>/api/schedule</code></div>
+                    <div class="api-row"><span
+                            class="method post">POST</span><code>/&#123;userId&#125;/add</code><span>Add event</span>
+                    </div>
+                    <div class="api-row"><span
+                            class="method get">GET</span><code>/&#123;userId&#125;/all</code><span>Get all events</span>
+                    </div>
+                </div>
+                <div class="api-group">
+                    <div class="api-group-title">Consultations · <code>/api/consultations</code></div>
+                    <div class="api-row"><span class="method post">POST</span><code>/</code><span>Create consultation
+                            slot</span></div>
+                    <div class="api-row"><span
+                            class="method patch">PATCH</span><code>/update/&#123;teacherId&#125;</code><span>Update
+                            slot</span></div>
+                    <div class="api-row"><span class="method get">GET</span><code>/&#123;teacherId&#125;</code><span>Get
+                            teacher's slot</span></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <h2>⚙️ Tech Stack</h2>
+            <div class="tech-stack">
+                <div class="tech-group">
+                    <span class="tech-category">Frontend</span>
+                    <div class="tech-pills">
+                        <span class="pill">Angular 17+</span>
+                        <span class="pill">Standalone Components</span>
+                        <span class="pill">Modular CSS</span>
+                        <span class="pill">JWT AuthGuards</span>
+                        <span class="pill">FullCalendar</span>
+
+                    </div>
+                </div>
+                <div class="tech-group">
+                    <span class="tech-category">Backend</span>
+                    <div class="tech-pills">
+                        <span class="pill">Spring Boot 3.3</span>
+                        <span class="pill">Java 21</span>
+                        <span class="pill">Spring Security</span>
+                        <span class="pill">Spring Data JPA</span>
+                        <span class="pill">JWT (jjwt)</span>
+                        <span class="pill">Lombok</span>
+                        <span class="pill">Bean Validation</span>
+                        <span class="pill">OpenAPI / Swagger</span>
+                    </div>
+                </div>
+                <div class="tech-group">
+                    <span class="tech-category">Database</span>
+                    <div class="tech-pills">
+                        <span class="pill">H2 (in-memory)</span>
+                        <span class="pill">Hibernate ORM</span>
+                    </div>
+                </div>
+                <div class="tech-group">
+                    <span class="tech-category">Testing</span>
+                    <div class="tech-pills">
+                        <span class="pill">JUnit 5</span>
+                        <span class="pill">Mockito</span>
+                        <span class="pill">AssertJ</span>
+                        <span class="pill">Spring Security Test</span>
+                    </div>
+                </div>
+                <div class="tech-group">
+                    <span class="tech-category">Build</span>
+                    <div class="tech-pills">
+                        <span class="pill">Maven</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>

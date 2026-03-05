@@ -1,0 +1,65 @@
+main {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    background: var(--color-primary);
+    padding: 40px;
+    border-radius: 12px;
+    border: 5px solid var(--color-accent);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.74);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 500px;
+    width: 90%;
+    margin: auto;
+    flex-grow: 0;
+}
+
+.header-text {
+    color: #eee;
+    font-size: var(--text-title);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.contact-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #eee;
+    font-size: var(--text-large);
+    font-weight: bold;
+}
+
+.contact-row i {
+    font-size: 24px;
+    width: 35px;
+    text-align: center;
+}
+
+.contact-row span,
+.contact-row a {
+    cursor: pointer;
+    color: #eee;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.contact-row a:hover {
+    text-decoration: underline;
+    color: var(--color-accent);
+}
+
+.fa-brands.fa-linkedin {
+    color: #0077b5;
+}
+
+.footer {
+    width: 100%;
+    flex-shrink: 0;
+}

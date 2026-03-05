@@ -1,0 +1,50 @@
+<main class="login-container">
+    <div class="wrapper">
+        <div class="main-sec">
+            <div class="image-section">
+                <img src="uniPhoto.png" alt="Login image">
+            </div>
+
+            <div class="login-section">
+                <div class="ready-card">
+                    <h2>Login</h2>
+
+                    <div class="input-sec">
+                        @if (errorMessage) {
+                        <div class="error-box">
+                            {{errorMessage}}
+                        </div>
+                        }
+
+                        <input type="email" [(ngModel)]="loginData.email" placeholder="Email" required #email="ngModel">
+                        @if (email.invalid && email.touched) {
+                        <span class="error-text">Please enter your email</span>
+                        }
+
+                        <input type="password" [(ngModel)]="loginData.password" placeholder="Password" required
+                            #password="ngModel">
+                        @if (password.invalid && password.touched) {
+                        <span class="error-text">Please enter your password</span>
+                        }
+
+                        <button class="btn-1 login-button" type="button" (click)="onLogin()">Login</button>
+
+                        <p class="hasAccount">
+                            Don't have an account? <a routerLink="/register">Register</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-container">
+                <p>&copy; 2026 UNI Portal. All rights reserved.</p>
+                <div class="footer-links">
+                    <a routerLink="/privacyP">Privacy Policy</a>
+                    <a routerLink="/contactP">Contact</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</main>

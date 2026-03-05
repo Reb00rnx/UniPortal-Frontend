@@ -1,0 +1,31 @@
+<main>
+    <div class="container">
+        <p class="header-text">For more information, contact me:</p>
+
+        <div class="contact-row" (click)="copyToClipboard('patryk.kr0043@gmail.com')">
+            <i class="fa-solid fa-envelope"></i>
+            <span>patryk.kr0043@gmail.com</span>
+        </div>
+
+        <div class="contact-row">
+            <i class="fa-brands fa-linkedin"></i>
+            <a href="https://www.linkedin.com/in/patryk-krysztoforski/"
+                target="_blank">linkedin.com/in/patryk-krysztoforski</a>
+        </div>
+
+        <div class="contact-row">
+            <i class="fa-brands fa-github"></i>
+            <a href="https://github.com/Reb00rnx" target="_blank">github.com/Reb00rnx</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 UNI Portal. All rights reserved.</p>
+            <div class="footer-links">
+                <a routerLink="/privacyP">Privacy Policy</a>
+                <a routerLink="/contactP">Contact</a>
+            </div>
+        </div>
+    </footer>
+</main>

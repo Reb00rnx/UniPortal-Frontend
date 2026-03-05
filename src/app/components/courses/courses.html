@@ -1,0 +1,44 @@
+<div class="courses-wrapper">
+  <h1 class="categories">Available Courses</h1>
+  <div class="courses-grid">
+    @for (course of courses; track course.id) {
+    @if (!isEnrolled(course)) {
+    <div class="ready-card">
+      <div class="card-info">
+        <h3>{{ course.name }}</h3>
+        <p>Teacher: <strong>{{course.teacher.firstName}} {{ course.teacher.lastName }}</strong></p>
+        <p class="code-text">Code: {{ course.code }}</p>
+      </div>
+      <div class="card-actions">
+        <button class="join-btn" (click)="enroll(course.id)">Join Course</button>
+      </div>
+    </div>
+    }
+    }
+    @if (!anyAvailable) {
+    <div class="no-courses-info">No courses available</div>
+    }
+  </div>
+
+  <h1 class="categories">My Courses</h1>
+  <div class="courses-grid">
+    @if (!hasJoinedAny){
+    <div class="empty-state">You haven't joined any courses yet.</div>
+    }
+    @for (course of courses; track course.id) {
+    @if (isEnrolled(course)) {
+    <div class="ready-card enrolled">
+      <div class="card-info">
+        <h3>{{ course.name }}</h3>
+        <p>Teacher: <strong>{{course.teacher.firstName}} {{ course.teacher.lastName }}</strong></p>
+        <p class="code-text">Code: {{ course.code }}</p>
+      </div>
+      <div class="card-actions">
+        <button class="join-btn" [routerLink]="['/student/courses',course.id]">Enter</button>
+
+      </div>
+    </div>
+    }
+    }
+  </div>
+</div>

@@ -1,0 +1,146 @@
+:root {
+    --navy-blue: var(--color-primary);
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: white;
+}
+
+
+.navbar {
+    background-color: var(--color-primary);
+    height: 80px;
+    padding: 0px 40px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-bottom: 2px solid var(--color-accent);
+}
+
+.nav-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 30px;
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+    padding: 8px 0;
+}
+
+.logo img {
+    height: 100%;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    opacity: 0.7;
+}
+
+
+.logout-btn {
+    background: transparent;
+    border: 2px solid var(--color-accent);
+    color: var(--color-white);
+    padding: 8px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+
+
+
+.logout-btn:hover {
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+}
+
+
+main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    padding: 100px 40px;
+}
+
+.main-content h1 {
+    font-size: 40px;
+    color: var(--navy-blue);
+    margin-bottom: 20px;
+}
+
+.main-content p {
+    font-size: 18px;
+    color: #555;
+}
+
+
+
+.footer {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 20px 40px;
+    border-top: 2px solid var(--color-accent);
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}

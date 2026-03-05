@@ -1,0 +1,39 @@
+<main>
+
+    <nav class="navbar">
+        <div class="nav-container">
+
+          
+            <div class="logo">
+                <a routerLink="dashboard" style="height: 100%; display: flex; align-items: center;">
+                    <img src="logotx.png" alt="UNI Portal Logo">
+                </a>
+
+            </div>
+           
+            <ul class="nav-links">
+                <li><a routerLink="profile">Profile</a></li>
+                <li><a routerLink="courses">Courses</a></li>
+                <li><a routerLink="grades">Grades</a></li>
+                <li><a routerLink="schedule">Schedule</a></li>
+            </ul>
+
+            <button class="logout-btn" (click)="onLogout()">Logout</button>
+
+        </div>
+    </nav>
+
+    <section class="main-content">
+        <router-outlet></router-outlet>
+    </section>
+
+
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 UNI Portal. All rights reserved.</p>
+            <div class="footer-links">
+                <a routerLink="privacy">Privacy Policy</a>
+                <a routerLink="contact">Contact</a>
+            </div>
+        </div>
+    </footer>

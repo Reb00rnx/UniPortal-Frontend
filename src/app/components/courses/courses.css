@@ -1,0 +1,99 @@
+.courses-wrapper {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.categories {
+    padding: 30px;
+}
+
+
+.ready-card {
+    background-color: var(--color-white);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 200px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+
+.ready-card.enrolled {
+    border-left: 5px solid var(--color-accent);
+}
+
+
+.ready-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+h3 {
+    padding: 5px 12px;
+    width: fit-content;
+    font-size: 1.1rem;
+}
+
+p {
+    padding: 5px;
+    color: #444;
+}
+
+
+.card-actions {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+.join-btn,
+.enter-btn {
+    padding: 8px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.join-btn {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+}
+
+.enter-btn {
+    background-color: var(--color-primary);
+    border: 2px solid var(--color-accent);
+    color: var(--color-white);
+}
+
+.enter-btn:hover {
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+    transform: scale(1.05);
+}
+
+.empty-state,
+.no-courses-info {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    background: #f9f9f9;
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    color: #666;
+    margin: 20px 0;
+}

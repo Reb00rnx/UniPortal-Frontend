@@ -1,0 +1,126 @@
+@if (user) {
+<div class="header-1">
+  <h2>Profile</h2>
+  <div class="line"></div>
+</div>
+
+<div class="ready-card profile-card">
+  <div class="person-info">
+    <div class="card-info">
+      <h1>{{ user.academicTitle }}. {{ user.firstName }} {{ user.lastName }}</h1>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Department:</strong> {{ user.department }}</p>
+      <p><strong>Role:</strong> Academic Teacher</p>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-item">
+        <span class="stat-label"><strong>Active Courses: </strong></span>
+        <span class="stat-value">{{ teacherCourses.length }}</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label"><strong>Total Students: </strong></span>
+        <span class="stat-value">{{ totalStudents || 0 }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="class-info">
+    <div class="select">
+      <strong class="desc">Consultation</strong>
+      <button class="btn-1" (click)="openModal()"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+    </div>
+    <div class="line"></div>
+    <div class="consultation">
+      <div class="con-row"><strong>Day: </strong>{{consultationData.con_day}}</div>
+      <div class="con-row"><strong>Time: </strong>{{consultationData.startTime}} - {{consultationData.endTime}}</div>
+      <div class="con-row"><strong>Room: </strong>{{consultationData.room}}</div>
+    </div>
+  </div>
+</div>
+}
+<div class="wrapper">
+  <div class="user-grades">
+    <div class="header">
+      <h2>My Courses</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="grades-list">
+      @if (teacherCourses.length > 0) {
+      <div class="grades-labels">
+        <span class="label-name">Course Name</span>
+        <span class="label-avg">Students</span>
+        <span class="label-action">Action</span>
+      </div>
+      }
+
+      @for (course of teacherCourses; track course.id) {
+      <div class="grade-row">
+        <span class="course-name"><strong>{{ course.name }}</strong></span>
+        <strong class="course-avg">{{ course.students.length }}</strong>
+        <button class="btn-1 btn-mng" (click)="viewCourse(course.id)">Manage</button>
+      </div>
+      } @empty {
+      <p class="empty-msg">You are not conducting any courses yet.</p>
+      }
+    </div>
+  </div>
+
+  <div class="incommingDates">
+    <div class="header">
+      <h2>Upcoming Dates</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="dates-list">
+      @for (event of upcomingEvents; track event.id) {
+      <div class="date-row">
+        <span class="date-day"><strong>{{ event.eventDate }}</strong></span>
+        <span class="date-title">{{ event.title }}</span>
+      </div>
+      } @empty {
+      <p class="empty-msg">No upcoming events (exams/deadlines).</p>
+      }
+    </div>
+
+
+    @if (isModalOpen) {
+    <div class="modal-backdrop" (click)="closeModal()">
+      <div class="edit-modal" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+          <h3>Change consultation info</h3>
+          <p class="modal-subtitle">Update your availability for students</p>
+        </div>
+
+        <div class="form-group">
+          <label>Day of the week</label>
+          <select class="input-field" [(ngModel)]="editConsultationData.con_day">
+            <option value="MONDAY">Monday</option>
+            <option value="TUESDAY">Tuesday</option>
+            <option value="WEDNESDAY">Wednesday</option>
+            <option value="THURSDAY">Thursday</option>
+            <option value="FRIDAY">Friday</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Hours (From - To)</label>
+          <div style="display: flex; gap: 10px;">
+            <input class="input-field" type="time" [(ngModel)]="editConsultationData.startTime">
+            <input class="input-field" type="time" [(ngModel)]="editConsultationData.endTime">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Room / Location</label>
+          <input class="input-field" [(ngModel)]="editConsultationData.room" placeholder="e.g. A-214">
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn-1" (click)="handleSave()">Save</button>
+          <button class="btn-1 btn-cancel" (click)="closeModal()">Cancel</button>
+        </div>
+      </div>
+    </div>
+    }

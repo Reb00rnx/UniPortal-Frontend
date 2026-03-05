@@ -1,0 +1,114 @@
+<div class="gradebook-container" *ngIf="course">
+
+  <div class="ready-card header-block">
+    <h2>Gradebook: {{ course.name }}</h2>
+    <p>Manage grades for students enrolled in this course.</p>
+  </div>
+
+  <div class="ready-card">
+    <table class="grade-table">
+      <thead>
+        <tr>
+          <th>Student</th>
+          <th>Grades (Click for details)</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (student of course.students; track student.id) {
+        <tr>
+          <td>
+            <div class="student-info">
+              <strong>{{ student.firstName }} {{ student.lastName }}</strong>
+              <span class="index-sub">Indeks: {{ student.indexNumber }}</span>
+            </div>
+          </td>
+          <td>
+            <div class="grades-display">
+              @for (grade of studentGradesMap.get(student.id); track grade.id) {
+              <span class="grade-pill-mini clickable" (click)="openView(grade)"
+                [title]="grade.description || 'No description'">
+                {{ grade.numericValue }}
+              </span>
+              } @empty {
+              <span class="no-grades">No grades</span>
+              }
+            </div>
+          </td>
+          <td>
+            <button class="btn-1 btn-add-grade" (click)="openAddModal(student)">
+              + Add grade
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+@if (addingToStudent) {
+<div class="modal-backdrop" (click)="closeAddModal()">
+  <div class="edit-modal ready-card" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>New grade</h3>
+      <p class="modal-subtitle">{{ addingToStudent.firstName }} {{ addingToStudent.lastName }}</p>
+    </div>
+
+    <div class="form-group">
+      <label>Grade value</label>
+      <select class="input-field" [(ngModel)]="newGradeValue">
+        <option value="5.0">5.0 – Very Good</option>
+        <option value="4.5">4.5 – Good Plus</option>
+        <option value="4.0">4.0 – Good</option>
+        <option value="3.5">3.5 – Satisfactory Plus</option>
+        <option value="3.0">3.0 – Satisfactory</option>
+        <option value="2.0">2.0 – Fail</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>For what? <span class="required">*</span></label>
+      <textarea class="input-field" [(ngModel)]="newGradeDescriptionText" placeholder="Description" rows="3" required
+        #textArea="ngModel">
+        </textarea>
+      @if (textArea.invalid && textArea.touched) { <span class="error-text">Please enter grade description</span> }
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-1" [disabled]="!newGradeDescriptionText.trim()" (click)="confirmAddGrade()">
+        Publish grade
+      </button>
+      <button class="btn-1" (click)="closeAddModal()">Cancel</button>
+
+    </div>
+  </div>
+</div>
+}
+
+@if (viewingGrade) {
+<div class="modal-backdrop" (click)="closeView()">
+  <div class="edit-modal ready-card" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Grade info </h3>
+      <p class="modal-subtitle">{{ viewingGrade.studentName }}</p>
+    </div>
+
+    <div class="grade-badge-display">
+      <span class="grade-badge-large">{{ viewingGrade.numericValue }}</span>
+    </div>
+
+    <div class="form-group">
+      <label>Grade description</label>
+      <div class="description-view">
+        {{ viewingGrade.description || 'Brak opisu' }}
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-1 btn-delete" (click)="deleteGrade()">🗑 Delete</button>
+      <button class="btn-1 btn-cancel" (click)="closeView()">Close</button>
+    </div>
+  </div>
+</div>
+}
