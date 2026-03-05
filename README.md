@@ -3,9 +3,6 @@
 > Angular frontend for the UniPortal university management system.
 
 **Live:** [uniportall.netlify.app](https://uniportall.netlify.app)  
-**Backend:** [uniportal-r6nm.onrender.com](https://uniportal-r6nm.onrender.com)  
-**Backend repo:** [github.com/Reb00rnx/UniPortal](https://github.com/Reb00rnx/UniPortal)
-
 ---
 
 ## ✨ Features
@@ -71,3 +68,4 @@ src/app/
 ---
 
 *Part of a full-stack portfolio project. Backend built with Spring Boot 3 + PostgreSQL.*
+
