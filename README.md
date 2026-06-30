@@ -2,7 +2,7 @@
 
 > Angular frontend for the UniPortal university management system.
 
-**Live:** [uniportall.netlify.app](https://uniportall.netlify.app)  
+**Live:** [uniportall.netlify.app](https://uniportall.netlify.app)  (currently off)
 ---
 
 ## ✨ Features
